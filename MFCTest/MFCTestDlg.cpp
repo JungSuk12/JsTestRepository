@@ -343,10 +343,10 @@ void CMFCTestDlg::OnBnClickedRandom()
   CRect C_RectPicture;
   double dX = 0.0;
   double dY = 0.0;
-	double dAngle = 0.0;
+  double dAngle = 0.0;
   double dRadiaus = 0.0;
-	double dPointX = 0.0;
-	double dPointY = 0.0;
+  double dPointX = 0.0;
+  double dPointY = 0.0;
   m_Points.clear(); 
   
   //변수 선언 및 초기화
