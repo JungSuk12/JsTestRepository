@@ -1,4 +1,4 @@
-﻿#include "pch.h"
+#include "pch.h"
 #include "framework.h"
 #include "MFCTest.h"
 #include "MFCTestDlg.h"
@@ -274,9 +274,9 @@ void CMFCTestDlg::OnDeltaposThickSpin(NMHDR* pNMHDR, LRESULT* pResult)
   }
   nThickness += pNMUpDown->iDelta;  
   if (nThickness < 1)
-    nThickness = 1;
+      nThickness = 1;
   if (nThickness > 100)
-    nThickness = 100;
+      nThickness = 100;
   SetDlgItemInt(IDC_EDIT1, nThickness);
   m_nThickness = nThickness;
   Invalidate();//새로고침
@@ -284,24 +284,22 @@ void CMFCTestDlg::OnDeltaposThickSpin(NMHDR* pNMHDR, LRESULT* pResult)
   *pResult = 0;
 }
 
-
 void CMFCTestDlg::OnEnChangeThick()
 {
   CString strThickness;
   int nThickness;
-	strThickness = "";
-	nThickness = 0;
+  strThickness = "";
+  nThickness = 0;
 
   GetDlgItemText(IDC_EDIT1, strThickness);
   nThickness = _ttoi(strThickness);
-
-	//두께 값의 최소/최대값 Limit
+  //두께 값의 최소/최대값 Limit
   if (nThickness < 1)
-    nThickness = 1;
+      nThickness = 1;
   if (nThickness > 100)
-    nThickness = 100;
+      nThickness = 100;
 
-	//변수에 두께 값 Update
+  //변수에 두께 값 Update
   m_nThickness = nThickness;
 
   //스핀 컨트롤 값
@@ -348,9 +346,8 @@ void CMFCTestDlg::OnBnClickedRandom()
   double dPointX = 0.0;
   double dPointY = 0.0;
   m_Points.clear(); 
-  
   //변수 선언 및 초기화
-
+	
   GetDlgItem(IDC_DRAWSTATIC)->GetClientRect(&C_RectPicture);
 
   //랜덤 3개 포인트 함수 생성
@@ -368,12 +365,12 @@ void CMFCTestDlg::OnBnClickedRandom()
       //각도를 랜덤하게 설정 (0~360도 범위에서 랜덤)
       dAngle = rand() % 360;
 
-      // 각도에 맞는 x, y 좌표 계산 (원 외곽에 점을 찍기 위해 원의 반지름을 사용)
+      //각도에 맞는 x, y 좌표 계산 (원 외곽에 점을 찍기 위해 원의 반지름을 사용)
       dRadiaus = dAngle * (3.14159265 / 180.0); // 각도를 라디안으로 변환
       dPointX = aCircle.cCenter.x + aCircle.nDefultRadius * cos(dRadiaus);
       dPointY = aCircle.cCenter.y + aCircle.nDefultRadius * sin(dRadiaus);
 
-      // 점을 m_Points 벡터에 추가
+      //점을 m_Points에 추가
       m_Points.push_back(CPoint(static_cast<int>(dPointX), static_cast<int>(dPointY)));
     }
   }
