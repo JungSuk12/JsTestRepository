@@ -339,25 +339,26 @@ void CMFCTestDlg::OnBnClickedDrawResetBtn()
 void CMFCTestDlg::OnBnClickedRandom()
 {
   CRect C_RectPicture;
-  double dX = 0.0;
-  double dY = 0.0;
+  int nX = 0;
+  int nY = 0;
   double dAngle = 0.0;
   double dRadiaus = 0.0;
   double dPointX = 0.0;
   double dPointY = 0.0;
   m_Points.clear(); 
+  
   //변수 선언 및 초기화
-	
+
   GetDlgItem(IDC_DRAWSTATIC)->GetClientRect(&C_RectPicture);
 
   //랜덤 3개 포인트 함수 생성
   for (auto& aCircle : m_Circles)
   {
     //원 Center점 
-    dX = rand() % (C_RectPicture.Width() - 2 * aCircle.nDefultRadius) + aCircle.nDefultRadius;
-    dY = rand() % (C_RectPicture.Height() - 2 * aCircle.nDefultRadius) + aCircle.nDefultRadius;
+    nX = rand() % (C_RectPicture.Width() - 2 * aCircle.nDefultRadius) + aCircle.nDefultRadius;
+    nY = rand() % (C_RectPicture.Height() - 2 * aCircle.nDefultRadius) + aCircle.nDefultRadius;
 
-    aCircle.cCenter = CPoint(dX, dY);
+    aCircle.cCenter = CPoint(nX, nY);
 
     //원 외곽에 3개
     for (int i = 0; i < 3; ++i)
@@ -374,7 +375,6 @@ void CMFCTestDlg::OnBnClickedRandom()
       m_Points.push_back(CPoint(static_cast<int>(dPointX), static_cast<int>(dPointY)));
     }
   }
-
   Invalidate(); // 새로고침
 }
 
