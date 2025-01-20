@@ -1,0 +1,8 @@
+﻿  MFCTestDlg.cpp
+C:\Users\eclip\source\repos\MFCTest\MFCTest\MFCTestDlg.cpp(363,34): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/MFCTestDlg.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\eclip\source\repos\MFCTest\MFCTest\MFCTestDlg.cpp(363,30): warning C4244: '인수': 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/MFCTestDlg.cpp'을(를) 컴파일하는 중)
+  
+  MFCTest.vcxproj -> C:\Users\eclip\source\repos\MFCTest\x64\Debug\MFCTest.exe
