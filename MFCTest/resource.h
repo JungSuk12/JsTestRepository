@@ -7,6 +7,13 @@
 #define IDS_ABOUTBOX                    101
 #define IDD_MFCTEST_DIALOG              102
 #define IDR_MAINFRAME                   128
+#define IDB_BNDOTDOWN                   137
+#define IDB_BNDOTUP                     138
+#define IDB_BNRANDOMDOWN                139
+#define IDB_BNRANDOMUP                  140
+#define IDB_RESETDOWN                   141
+#define IDB_BITMAP6                     142
+#define IDB_RESETUP                     142
 #define IDC_BUTTON1                     1000
 #define IDC_RESETBTN                    1000
 #define IDC_EDIT1                       1001
@@ -19,9 +26,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        130
+#define _APS_NEXT_RESOURCE_VALUE        143
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1008
+#define _APS_NEXT_CONTROL_VALUE         1009
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

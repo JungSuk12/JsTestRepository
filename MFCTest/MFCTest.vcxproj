@@ -207,6 +207,19 @@
     <None Include="res\MFCTest.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\MFCTest\MFCTest\Icon\DotDown.bmp" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\DotDown.png" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\DotUp.bmp" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\DotUp.png" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\RandomDown.bmp" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\RandomDown.png" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\RandomUp.bmp" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\RandomUp.png" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\ResetDown.bmp" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\ResetDown.png" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\ResetUp.bmp" />
+    <Image Include="..\..\MFCTest\MFCTest\Icon\ResetUp.png" />
+    <Image Include="res\bitmap1.bmp" />
     <Image Include="res\MFCTest.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
