@@ -29,4 +29,4 @@ public:
 	DECLARE_MESSAGE_MAP();
 };
 
-extern CMFCTestApp theApp;
+extern CMFCTestApp MFCTestApp;
