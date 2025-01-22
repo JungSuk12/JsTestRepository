@@ -71,14 +71,6 @@ BOOL CMFCTestDlg::OnInitDialog()
   m_BackGroundColor.CreateSolidBrush(RGB(100, 110, 180));
   //m_bmpOK.LoadBitmap(IDB_OK1);
  // m_btnOK.SetBitmap(m_bmpOK);
-
-  //완성도도 떨어지고, 요청사항을 충족하지 못한 부분도 있고,
-  //버그도 많은 부분에 대해서 스스로도 인지 하고 있습니다.
-  //영상을 시청하고 매뉴얼을 참고하여 작성했어야 했는데, 그러지 못한 점에 대해서 죄송합니다.
-  //본래 고집이 많은 성격이라 이런 저런 방법을 시도하여 테스트를 하는 타입니다.
-  //이번 과제를 통해 MFC / C++ 프로그래밍에 대해 많은 것을 배울 수 있었습니다.
-  //합격 불합격 여부를 떠나서 좋은 경험을 하게 해주셔서 감사합니다.
-
   return TRUE; 
 }
 
@@ -91,7 +83,6 @@ HBRUSH CMFCTestDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
   {
     return m_BackGroundColor; // 배경색 브러시 반환
   }
-
   return hbr;
 }
 
@@ -355,9 +346,7 @@ void CMFCTestDlg::OnEnChangeThick()
   //스핀 컨트롤 값 업데이트
   pSpin = (CSpinButtonCtrl*)GetDlgItem(IDC_SPIN4);
   if (pSpin && ::IsWindow(pSpin->m_hWnd))
-  {
     pSpin->SetPos(nThickness);
-  }
 
   //에디트 컨트롤 값 업데이트
   SetDlgItemInt(IDC_EDIT1, nThickness);
@@ -382,16 +371,14 @@ void CMFCTestDlg::UpdateControls(int nThickness)
 
   // 스핀 컨트롤 값 업데이트
   pSpin = (CSpinButtonCtrl*)GetDlgItem(IDC_SPIN4);
-  if (pSpin && ::IsWindow(pSpin->m_hWnd)) {
+  if (pSpin && ::IsWindow(pSpin->m_hWnd)) 
     pSpin->SetPos(nThickness);
-  }
 
   //에디트 컨트롤 값 업데이트
   SetDlgItemInt(IDC_EDIT1, nThickness);
 
   //새로고침
   Invalidate();
-
   isUpdating = false;
 }
 
@@ -430,7 +417,6 @@ void CMFCTestDlg::OnBnClickedRandom()
   //랜덤 3개 포인트 함수 생성
   for (auto& aCircle : m_Circles)
   {
-
     //원 Center점 
     dX = rand() % (C_RectPicture.Width() / 2);
     dY = rand() % (C_RectPicture.Height() / 2);
@@ -450,6 +436,11 @@ void CMFCTestDlg::OnBnClickedRandom()
       m_Points.push_back(CPoint(static_cast<int>(dPointX), static_cast<int>(dPointY)));
     }
   }
-
+    //완성도도 떨어지고, 요청사항을 충족하지 못한 부분도 있고,
+    //버그도 많은 부분에 대해서 스스로도 인지 하고 있습니다.
+    //영상을 시청하고 매뉴얼을 참고하여 작성했어야 했는데, 그러지 못한 점에 대해서 죄송합니다.
+    //본래 고집이 많은 성격이라 이런 저런 방법을 시도하여 테스트를 하는 타입니다.
+    //이번 과제를 통해 MFC / C++ 프로그래밍에 대해 많은 것을 배울 수 있었습니다.
+    //합격 불합격 여부를 떠나서 좋은 경험을 하게 해주셔서 감사합니다.
   Invalidate(); // 새로고침
 }
