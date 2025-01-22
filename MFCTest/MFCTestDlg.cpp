@@ -38,16 +38,22 @@ BOOL CMFCTestDlg::OnInitDialog()
   // Edit Control에 기본값 1을 설정
   SetDlgItemInt(IDC_EDIT1, 1);
   m_nThickness = 1;
+
   m_btnReset.SubclassDlgItem(IDC_RESETBTN, this);
+  m_btnReset.SetWindowTextW(_T(""));//Icon Aign 문제
   m_btnReset.SetImage(IDB_RESETUP, IDB_RESETDOWN);
   m_btnReset.SizeToContent();
-  m_btnReset.MoveWindow(50, 400, 155, 70);
+  m_btnReset.MoveWindow(50, 400, 150, 70);
+  m_btnReset.SetFaceColor(RGB(100, 110, 180), true);
+
 
 
   m_btnRandom.SubclassDlgItem(IDC_RANDOM, this);
+  m_btnRandom.SetWindowTextW(_T(""));//Icon Aign 문제
   m_btnRandom.SetImage(IDB_BNRANDOMUP, IDB_BNRANDOMDOWN);
   m_btnRandom.SizeToContent();
-  m_btnRandom.MoveWindow(350, 400, 155, 70);
+  m_btnRandom.MoveWindow(350, 400, 150, 70);
+  m_btnRandom.SetFaceColor(RGB(100, 110, 180), true);
   //CButton pDotButtonImage;
   //CBitmap bmp;
   //bmp.LoadBitmap(IDB_BNRANDOMUP);
