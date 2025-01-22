@@ -41,13 +41,13 @@ BOOL CMFCTestDlg::OnInitDialog()
   m_btnReset.SubclassDlgItem(IDC_RESETBTN, this);
   m_btnReset.SetImage(IDB_RESETUP, IDB_RESETDOWN);
   m_btnReset.SizeToContent();
-  m_btnReset.MoveWindow(50, 400, 160, 70);
+  m_btnReset.MoveWindow(50, 400, 155, 70);
 
 
   m_btnRandom.SubclassDlgItem(IDC_RANDOM, this);
   m_btnRandom.SetImage(IDB_BNRANDOMUP, IDB_BNRANDOMDOWN);
   m_btnRandom.SizeToContent();
-  m_btnRandom.MoveWindow(350, 400, 160, 70);
+  m_btnRandom.MoveWindow(350, 400, 155, 70);
   //CButton pDotButtonImage;
   //CBitmap bmp;
   //bmp.LoadBitmap(IDB_BNRANDOMUP);
