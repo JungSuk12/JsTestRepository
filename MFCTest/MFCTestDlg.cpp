@@ -196,9 +196,9 @@ void CMFCTestDlg::DrawCircleFromPoints(CDC& dc)
 {
   CRgn Rgn;
   CPoint p_Center;
+  CRect C_RectPicture;
   int nRadius = 0;
   int nDotCount = 0;
-  CRect C_RectPicture;
   //Picture Control의 클라이언트 영역 가져오기
   GetDlgItem(IDC_DRAWSTATIC)->GetClientRect(&C_RectPicture);
   GetDlgItem(IDC_DRAWSTATIC)->ClientToScreen(&C_RectPicture);
@@ -327,7 +327,11 @@ void CMFCTestDlg::OnEnChangeThick()
 
   isUpdating = true;
   CString strThickness;
-  int nThickness = 0;
+  int nThickness;
+
+  strThickness = "";
+  nThickness = 0;
+
   CSpinButtonCtrl* pSpin;
   GetDlgItemText(IDC_EDIT1, strThickness);
 
