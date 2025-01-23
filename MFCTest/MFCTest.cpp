@@ -46,12 +46,9 @@ BOOL CMFCTestApp::InitInstance()
 
 	CWinApp::InitInstance();
 
-
 	AfxEnableControlContainer();
 	CShellManager *pShellManager = new CShellManager;
 	CMFCVisualManager::SetDefaultManager(RUNTIME_CLASS(CMFCVisualManagerWindows));
-
-	//SetRegistryKey(_T("로컬 애플리케이션 마법사에서 생성된 애플리케이션"));
 
 	CMFCTestDlg dlg;
 	m_pMainWnd = &dlg;

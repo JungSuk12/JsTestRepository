@@ -64,8 +64,8 @@ BOOL CMFCTestDlg::OnInitDialog()
   CSpinButtonCtrl* pSpin = (CSpinButtonCtrl*)GetDlgItem(IDC_SPIN4);
   if (pSpin)
   {
-    pSpin->SetRange(1, 100);  // 최소값1, 최대값 100 
-    pSpin->SetPos(10);       // 초기값10
+    pSpin->SetRange(1, 100);// 최소값1, 최대값 100 
+    pSpin->SetPos(10);// 초기값10
   }
   m_BackGroundColor.CreateSolidBrush(RGB(100, 110, 180));
   //m_bmpOK.LoadBitmap(IDB_OK1);
@@ -79,9 +79,8 @@ HBRUSH CMFCTestDlg::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
   // 다이얼로그 배경색 설정
   if (nCtlColor == CTLCOLOR_DLG)
-  {
-    return m_BackGroundColor; // 배경색 브러시 반환
-  }
+    return m_BackGroundColor;
+  //배경색상
   return hbr;
 }
 
@@ -93,7 +92,6 @@ struct Circle
 
 std::vector<Circle> m_Circles; 
 //그려진 원을 저장
-
 bool m_bCircleCreated = false;
 
 void CMFCTestDlg::OnLButtonDown(UINT nFlags, CPoint point)
@@ -104,20 +102,19 @@ void CMFCTestDlg::OnLButtonDown(UINT nFlags, CPoint point)
   if (m_bCircleCreated)
     return;
   //원이 이미 생성된 경우 리턴
-  
-  m_Points.push_back(point);
 
+  m_Points.push_back(point);
   if (m_Points.size() == 3 && !m_bCircleCreated)
   {
     //원 계산 영역
-    std::vector<CPoint> lastThreePoints =
+    std::vector<CPoint> ThreePoints =
     {
         m_Points[m_Points.size() - 3],
         m_Points[m_Points.size() - 2],
         m_Points[m_Points.size() - 1]
     };
 
-    nRadius = CalculateCircle(lastThreePoints, Ccenter);
+    nRadius = CalculateCircle(ThreePoints, Ccenter);
     if (nRadius > 0)
     {
       Circle newCircle = { Ccenter, nRadius };
@@ -193,7 +190,8 @@ void CMFCTestDlg::DrawCircleFromPoints(CDC& dc)
   CRect C_RectPicture;
   int nRadius = 0;
   int nDotCount = 0;
-  //Picture Control의 클라이언트 영역 가져오기
+
+  //Picture Control
   GetDlgItem(IDC_DRAWSTATIC)->GetClientRect(&C_RectPicture);
   GetDlgItem(IDC_DRAWSTATIC)->ClientToScreen(&C_RectPicture);
   ScreenToClient(&C_RectPicture);
@@ -208,10 +206,10 @@ void CMFCTestDlg::DrawCircleFromPoints(CDC& dc)
     nRadius = CalculateCircle(m_Points, p_Center);
     if (nRadius > 0)
     {
-      //설정된 두께로 원을 그림
       CPen pen(PS_SOLID,
                m_nThickness,
-               RGB(0, 0, 0)); //두께와 색상 설정
+               RGB(0, 0, 0));
+
       CPen* pOldPen = dc.SelectObject(&pen);
 
       dc.Ellipse(p_Center.x - nRadius,
@@ -225,7 +223,6 @@ void CMFCTestDlg::DrawCircleFromPoints(CDC& dc)
   //포인터 해제
   dc.SelectClipRgn(nullptr);
 }
-
 //3개의 점으로 원을 계산하는 함수
 int CMFCTestDlg::CalculateCircle(const std::vector<CPoint>& Circlepoint, CPoint& CenterPoint)
 {
@@ -246,7 +243,6 @@ int CMFCTestDlg::CalculateCircle(const std::vector<CPoint>& Circlepoint, CPoint&
   dX3 = Circlepoint[2].x, 
   dY3 = Circlepoint[2].y;
   //변수 초기화영역
-
 
   if (Circlepoint.size() != 3) 
     return 0;
@@ -345,7 +341,6 @@ void CMFCTestDlg::OnEnChangeThick()
 
   //에디트 컨트롤 값 업데이트
   SetDlgItemInt(IDC_EDIT1, nThickness);
-
   isUpdating = false;
 }
 
@@ -428,7 +423,8 @@ void CMFCTestDlg::OnBnClickedRandom()
       dRadiaus = dAngle * (3.14 / 180.0); // 각도를 라디안으로 변환
       dPointX = aCircle.cCenter.x + aCircle.nDefultRadius * cos(dRadiaus);
       dPointY = aCircle.cCenter.y + aCircle.nDefultRadius * sin(dRadiaus);
-      m_Points.push_back(CPoint(static_cast<int>(dPointX), static_cast<int>(dPointY)));
+      m_Points.push_back(CPoint(static_cast<int>(dPointX),
+                                static_cast<int>(dPointY)));
     }
   }
     //완성도도 떨어지고, 요청사항을 충족하지 못한 부분도 있고,
