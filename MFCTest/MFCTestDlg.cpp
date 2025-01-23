@@ -99,32 +99,35 @@ bool m_bCircleCreated = false;
 
 void CMFCTestDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-  //점 추가
-  m_Points.push_back(point);
   CPoint pCenterPoint;
   int nRadius = 0;
-  //점이 3개 이상이고, 아직 원이 생성되지 않았을 경우에만 원 생성
+
+  //원이 이미 있을경우 리턴
+  if (m_bCircleCreated)
+    return;
+
+  //점 추가
+  m_Points.push_back(point);
+
+  //점이 3개만 찍히도록 수정
   if (m_Points.size() == 3 && !m_bCircleCreated)
   {
-    //마지막 3개의 점으로 원 계산
-    std::vector<CPoint> LastThreePoints =
-    {
+      std::vector<CPoint> LastThreePoints =
+      {
         m_Points[m_Points.size() - 3],
         m_Points[m_Points.size() - 2],
         m_Points[m_Points.size() - 1]
-    };
+      };
 
-    nRadius = CalculateCircle(LastThreePoints,
-                              pCenterPoint);
-    if (nRadius > 0)
-    {
-      Circle newCircle = {pCenterPoint,
-                          nRadius};
-
-      m_Circles.push_back(newCircle);
-      m_bCircleCreated = true; //원 생성 완료 플래그 설정
-    }
+      nRadius = CalculateCircle(LastThreePoints, pCenterPoint);
+      if (nRadius > 0)
+      {
+        Circle newCircle = {pCenterPoint, nRadius};
+        m_Circles.push_back(newCircle);
+        m_bCircleCreated = true;
+      }
   }
+
   Invalidate(); //화면 새로고침
   CDialogEx::OnLButtonDown(nFlags, point);
 }
