@@ -223,6 +223,12 @@ void CMFCTestDlg::DrawCircleFromPoints(CDC& dc)
   //포인터 해제
   dc.SelectClipRgn(nullptr);
 }
+void CMFCTestDlg::DrawCircleFromDrag(CDC& dc)
+{
+  
+}
+
+
 //3개의 점으로 원을 계산하는 함수
 int CMFCTestDlg::CalculateCircle(const std::vector<CPoint>& Circlepoint, CPoint& CenterPoint)
 {
@@ -249,8 +255,8 @@ int CMFCTestDlg::CalculateCircle(const std::vector<CPoint>& Circlepoint, CPoint&
   //Circlepoint 3 이하인경우 리턴
 
   dTriAngle = dX1 * (dY2 - dY3) + dX2 *
-             (dY3 - dY1) + dX3 * 
-             (dY1 - dY2);
+                    (dY3 - dY1) + dX3 * 
+                    (dY1 - dY2);
 
   if (fabs(dTriAngle) < 1e-8)
     return 0;
