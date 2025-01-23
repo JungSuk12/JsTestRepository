@@ -34,11 +34,10 @@ END_MESSAGE_MAP()
 BOOL CMFCTestDlg::OnInitDialog()
 {
   CDialogEx::OnInitDialog();
-
-  // Edit Control에 기본값 1을 설정
-  SetDlgItemInt(IDC_EDIT1, 1);
+  SetDlgItemInt(IDC_EDIT1, 1); //Edit Control 값에 기본값 초기화
   m_nThickness = 1;
 
+  //////////////////////////////Reset버튼관련
   m_btnReset.SubclassDlgItem(IDC_RESETBTN, this);
   m_btnReset.SetWindowTextW(_T(""));//Icon Aign 문제
   m_btnReset.SetImage(IDB_RESETUP, IDB_RESETDOWN);
@@ -47,7 +46,7 @@ BOOL CMFCTestDlg::OnInitDialog()
   m_btnReset.SetFaceColor(RGB(100, 110, 180), true);
 
 
-
+  //////////////////////////////Random버튼관련
   m_btnRandom.SubclassDlgItem(IDC_RANDOM, this);
   m_btnRandom.SetWindowTextW(_T(""));//Icon Aign 문제
   m_btnRandom.SetImage(IDB_BNRANDOMUP, IDB_BNRANDOMDOWN);
@@ -65,8 +64,8 @@ BOOL CMFCTestDlg::OnInitDialog()
   CSpinButtonCtrl* pSpin = (CSpinButtonCtrl*)GetDlgItem(IDC_SPIN4);
   if (pSpin)
   {
-    pSpin->SetRange(1, 100);  // 최소값 1, 최대값 100 
-    pSpin->SetPos(10);       // 초기값 10
+    pSpin->SetRange(1, 100);  // 최소값1, 최대값 100 
+    pSpin->SetPos(10);       // 초기값10
   }
   m_BackGroundColor.CreateSolidBrush(RGB(100, 110, 180));
   //m_bmpOK.LoadBitmap(IDB_OK1);
@@ -99,98 +98,90 @@ bool m_bCircleCreated = false;
 
 void CMFCTestDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
-  CPoint pCenterPoint;
+  CPoint Ccenter;
   int nRadius = 0;
 
-  //원이 이미 있을경우 리턴
   if (m_bCircleCreated)
     return;
-
-  //점 추가
+  //원이 이미 생성된 경우 리턴
+  
   m_Points.push_back(point);
 
-  //점이 3개만 찍히도록 수정
   if (m_Points.size() == 3 && !m_bCircleCreated)
   {
-      std::vector<CPoint> LastThreePoints =
-      {
+    //원 계산 영역
+    std::vector<CPoint> lastThreePoints =
+    {
         m_Points[m_Points.size() - 3],
         m_Points[m_Points.size() - 2],
         m_Points[m_Points.size() - 1]
-      };
+    };
 
-      nRadius = CalculateCircle(LastThreePoints, pCenterPoint);
-      if (nRadius > 0)
-      {
-        Circle newCircle = {pCenterPoint, nRadius};
-        m_Circles.push_back(newCircle);
-        m_bCircleCreated = true;
-      }
+    nRadius = CalculateCircle(lastThreePoints, Ccenter);
+    if (nRadius > 0)
+    {
+      Circle newCircle = { Ccenter, nRadius };
+      m_Circles.push_back(newCircle);
+      m_bCircleCreated = true; //원 생성 완료
+    }
   }
-
-  Invalidate(); //화면 새로고침
+  OnPaint(); //화면 갱신
   CDialogEx::OnLButtonDown(nFlags, point);
 }
 
-//화면 그리기 핸들러
 void CMFCTestDlg::OnPaint()
 {
   CDialogEx::OnPaint();
   CWnd* pStaticCtrl = GetDlgItem(IDC_DRAWSTATIC);
-  CClientDC dc(pStaticCtrl);
-  CRect ClientRect;
-  CRgn Rgn;
-  if (pStaticCtrl != nullptr) 
+  CClientDC CDC(pStaticCtrl);
+  CRect CRect;
+  CRgn CRegion;
+
+  if (pStaticCtrl != nullptr)
   {
-    pStaticCtrl->GetClientRect(&ClientRect); //초기화
+    pStaticCtrl->GetClientRect(&CRect);
+    //원을 그려주는 영역 배경만 흰색으로 초기화
+    CDC.FillSolidRect(CRect,
+                      RGB(255, 255, 255));
 
-    //영역을 흰색 배경으로 초기화
-    dc.FillSolidRect(ClientRect, RGB(255, 255, 255));
+    //영역 설정
+    CRegion.CreateRectRgn(CRect.left,
+                          CRect.top,
+                          CRect.right,
+                          CRect.bottom);
 
-    //영역을 PictureControl 내부로 설정
-
-    Rgn.CreateRectRgn(ClientRect.left,
-                      ClientRect.top,
-                      ClientRect.right,
-                      ClientRect.bottom);
-
-    dc.SelectClipRgn(&Rgn);
+    CDC.SelectClipRgn(&CRegion);
 
     //원 그리기
-    for (const auto& circle : m_Circles) 
+    for(const auto& circle : m_Circles)
     {
-      //원의 중심이 PictureControl 내부에 있을 때만 그리기
-      if (ClientRect.PtInRect(circle.cCenter))
+      if(CRect.PtInRect(circle.cCenter))
       {
-        CPen pen(PS_SOLID, m_nThickness, RGB(0, 0, 0));  //두께와 색상 설정
-        CPen* pOldPen = dc.SelectObject(&pen);
+        CPen pen(PS_SOLID, m_nThickness, RGB(0, 0, 0));
+        CPen* oldPen = CDC.SelectObject(&pen);
+        CDC.Ellipse(circle.cCenter.x - circle.nDefultRadius,
+                    circle.cCenter.y - circle.nDefultRadius,
+                    circle.cCenter.x + circle.nDefultRadius,
+                    circle.cCenter.y + circle.nDefultRadius);
 
-        for (const auto& pDotPoint : m_Points)
-        {
-          dc.Ellipse(pDotPoint.x - 5, //Dot 그리는 부분
-                     pDotPoint.y - 5,
-                     pDotPoint.x + 5,
-                     pDotPoint.y + 5);
-        }
-        
-        dc.Ellipse(circle.cCenter.x - circle.nDefultRadius,
-                   circle.cCenter.y - circle.nDefultRadius,
-                   circle.cCenter.x + circle.nDefultRadius,
-                   circle.cCenter.y + circle.nDefultRadius);
-
-        dc.SelectObject(pOldPen);
+        CDC.SelectObject(oldPen);
       }
     }
 
-    //외곽에 찍힌 점 그리기
-    for (const auto& pDotPoint : m_Points)
+    //점 그리기
+    for (const auto& point : m_Points)
     {
-      dc.Ellipse(pDotPoint.x - 3,
-                 pDotPoint.y - 3,
-                 pDotPoint.x + 3,
-                 pDotPoint.y + 3);
+      CBrush CNomalBrush(RGB(0, 0, 0));
+      CBrush* DotBrush = CDC.SelectObject(&CNomalBrush);
+
+      CDC.Ellipse(point.x - 5,
+                  point.y - 5,
+                  point.x + 5,
+                  point.y + 5);
+
+      CDC.SelectObject(DotBrush);
     }
-    dc.SelectClipRgn(nullptr);
+    CDC.SelectClipRgn(nullptr);
   }
 }
 
@@ -231,7 +222,6 @@ void CMFCTestDlg::DrawCircleFromPoints(CDC& dc)
       dc.SelectObject(pOldPen);
     }
   }
-
   //포인터 해제
   dc.SelectClipRgn(nullptr);
 }
@@ -306,17 +296,15 @@ void CMFCTestDlg::OnDeltaposThickSpin(NMHDR* pNMHDR, LRESULT* pResult)
   nThickness = _ttoi(strThickness);
 
   if (strThickness.IsEmpty()) 
-  {
-    nThickness = 1;  //Default값 설정 부분
-  }
-  nThickness += pNMUpDown->iDelta;  
+    nThickness = 1;
+  nThickness += pNMUpDown->iDelta;
   if (nThickness < 1)
     nThickness = 1;
   if (nThickness > 100)
     nThickness = 100;
   SetDlgItemInt(IDC_EDIT1, nThickness);
   m_nThickness = nThickness;
-  Invalidate();//새로고침
+  OnPaint();//새로고침
 
   *pResult = 0;
 }
@@ -376,7 +364,7 @@ void CMFCTestDlg::UpdateControls(int nThickness)
 
   isUpdating = true;
 
-  // 스핀 컨트롤 값 업데이트
+  //스핀 컨트롤 값 업데이트
   pSpin = (CSpinButtonCtrl*)GetDlgItem(IDC_SPIN4);
   if (pSpin && ::IsWindow(pSpin->m_hWnd)) 
     pSpin->SetPos(nThickness);
@@ -385,7 +373,7 @@ void CMFCTestDlg::UpdateControls(int nThickness)
   SetDlgItemInt(IDC_EDIT1, nThickness);
 
   //새로고침
-  Invalidate();
+  OnPaint();
   isUpdating = false;
 }
 
@@ -396,7 +384,7 @@ void CMFCTestDlg::OnBnClickedDrawResetBtn()
   m_Circles.clear();
   m_bCircleCreated = false; //원 초기화
 
-  Invalidate(); //새로고침
+  OnPaint(); //새로고침
 
   //화면 새로고침 이후 변수 정리
   m_nThickness = 1; //기본 두께값 초기화
@@ -449,5 +437,5 @@ void CMFCTestDlg::OnBnClickedRandom()
     //본래 고집이 많은 성격이라 이런 저런 방법을 시도하여 테스트를 하는 타입니다.
     //이번 과제를 통해 MFC / C++ 프로그래밍에 대해 많은 것을 배울 수 있었습니다.
     //합격 불합격 여부를 떠나서 좋은 경험을 하게 해주셔서 감사합니다.
-  Invalidate(); // 새로고침
+  OnPaint(); //새로고침
 }
