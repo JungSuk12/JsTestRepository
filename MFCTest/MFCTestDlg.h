@@ -30,6 +30,11 @@ private:
   CBitmapButton m_btnImage;
   CMFCButton m_btnReset;
   CMFCButton m_btnRandom;
+
+  CRgn m_CircleRgn;
+  CPen m_CirclrPen;
+  CPen* m_pOldPen;
+
   afx_msg
   BOOL OnInitDialog();
   HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
