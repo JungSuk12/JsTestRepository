@@ -1,5 +1,9 @@
-﻿  pch.cpp
-  MFCTest.cpp
-  MFCTestDlg.cpp
-  코드를 생성하고 있습니다...
-  MFCTest.vcxproj -> C:\Users\eclip\Desktop\MFCTest\x64\Debug\MFCTest.exe
+﻿  MFCTestDlg.cpp
+C:\Users\eclip\Desktop\MFCTest - 복사본 (6) - 복사본 - 복사본\MFCTest\MFCTestDlg.cpp(115,27): warning C4858: 반환 값을 삭제하는 중: This member function returns a bool indicating whether the collection is empty and has no other effects. It is not useful to call this member function and discard the return value. Use the 'clear()' member function if you want to erase all elements.
+  (소스 파일 '/MFCTestDlg.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\eclip\Desktop\MFCTest - 복사본 (6) - 복사본 - 복사본\MFCTest\MFCTestDlg.cpp(953,31): warning C4858: 반환 값을 삭제하는 중: This member function returns a bool indicating whether the collection is empty and has no other effects. It is not useful to call this member function and discard the return value. Use the 'clear()' member function if you want to erase all elements.
+  (소스 파일 '/MFCTestDlg.cpp'을(를) 컴파일하는 중)
+  
+MFCTest.obj : warning LNK4075: '/EDITANDCONTINUE'이(가) '/INCREMENTAL:NO' 사양으로 인해 무시됩니다.
+  MFCTest.vcxproj -> C:\Users\eclip\Desktop\MFCTest - 복사본 (6) - 복사본 - 복사본\x64\Debug\MFCTest.exe

@@ -14,6 +14,8 @@
 #define IDB_RESETDOWN                   141
 #define IDB_BITMAP6                     142
 #define IDB_RESETUP                     142
+#define IDB_BNOPENDOWN                  143
+#define IDB_BNOPENUP                    144
 #define IDC_BUTTON1                     1000
 #define IDC_RESETBTN                    1000
 #define IDC_EDIT1                       1001
@@ -21,14 +23,15 @@
 #define IDC_DRAWSTATIC                  1006
 #define IDC_BUTTON2                     1007
 #define IDC_RANDOM                      1007
+#define IDC_IMGOPN                      1010
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        143
+#define _APS_NEXT_RESOURCE_VALUE        147
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1009
+#define _APS_NEXT_CONTROL_VALUE         1010
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

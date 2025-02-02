@@ -98,5 +98,35 @@
     <Image Include="res\bitmap1.bmp">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="..\..\..\MFCTest\MFCTest\Icon\DotDown.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\MFCTest\MFCTest\Icon\DotUp.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\MFCTest\MFCTest\Icon\RandomDown.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\MFCTest\MFCTest\Icon\RandomUp.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\MFCTest\MFCTest\Icon\ResetDown.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\..\MFCTest\MFCTest\Icon\ResetUp.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Icon\OpenDown.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="Icon\OpenUp.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\MFCTest\MFCTest\Icon\OpenDown.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="..\..\MFCTest\MFCTest\Icon\OpenUp.bmp">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>
