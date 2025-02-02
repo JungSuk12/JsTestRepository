@@ -1,0 +1,76 @@
+수정사항
+
+25. 01. 24
+ - 전반적인 소스 주석처리 추가.
+ - Invalidate() -> OnPaint() 변경
+ - CMFCTestDlg::OnPaint 에서 dc.Ellipse Direct로 그리지 않고 별도의 함수로 제작
+	CalculateCircle함수 (기존에 있엇으나, 사용이 제대로 되지 않고있엇습니다.)
+ - DrawCircleFromPoints 함수 -> Spin Control 값이 제대로 Update 되도록 수정
+ - OnBnClickedRandom 함수 전반적인 수정작업 진행.
+	- Button을 클릭하였을 때,
+	원의 크기도 Random으로 변하도록 수정.
+	Width/Height Radius Radom값으로 변하도록 수정.
+	- 점 3개가 너무 일직선상에 있을경우 원이 생성이 되지않는 버그 확인.
+	해당 상황이 발생 될 경우 Sort값을 강제적으로 주어 원을 생성.
+	- 원 생성 시 3.141592 소수점이 3.14 이상으로 넘어갈 경우 
+	원이 간헐적으로 생성이 되지 않는 버그 확인, 3.14로 고정.
+ - 원 색상 변경
+
+25. 01. 26
+ - OpenCV 적용
+ - OpenCV 관련 환경 변수, dll 추가
+ - OpenCV Include 제대로 되는지 확인작업.
+ - 원의 두께 조절 할 수 있는 함수 추가
+ - 원이 Static을 벗어날 경우 Static 내부로 그려지도록 예외처리
+
+25. 01. 30
+ - Static 위치 기반 변경
+ - Static, Dot 색상, 원 색상 변경
+ - 원이 Static을 벗어날 경우 그려지지 않도록 예외처리 추가
+	- 01. 26 수정시 좌상단좌표에 1의 Radius로 원이 그려지는 버그
+ - 01.24 Update 에서 OnPaint() 변경했던 부분 적당히 Invalidate() 변경
+ - 간헐적으로 원이 생성이 되지 않는 현상 수정.
+ 	소수점 3.14 문제 뿐만 아니라, Display 관련 문제점으로 확인.
+	GetClientRect 이후 ClientToScreen함수 ScreenToClient함수
+	세가지 사용하여 갱신.
+	
+ - TRACE(_T) 함수 중간에 이용하여 Debug 사용법 숙지
+ - 원을 그린 후에도 Dot가 유지 되도록 수정
+ - Dot가 3개 이상 찍히지 않도록 조건문.
+ - 증분 링크 사용
+
+25. 01. 31
+ - UI Static Align이 원이 벗어나는 문제 MFC 프레임 설정 문제로 확인
+ - 세 점이 정확히 Static 안에서만 생성이 되도록 함수 생성
+	- 만일 세 점 중심점 기준으로 벗어날 경우 2점 기준으로
+	  가장 큰 원 생성
+ - Drag로 원을 그릴수 있는 함수 구현
+
+25. 02. 01
+ - 드래그로 원을 그릴 때 Static 내부에서 여러개 그려지는 문제점이 확인됨
+	void CMFCTestDlg::OnLButtonDown(UINT nFlags, CPoint point)
+	함수에서 m_DraggedCircles.clear(); 초기화 하여 해당 문제 해결
+
+25. 02. 02
+ - Random 함수에 m_DraggedCircles.clear(); 예외처리 추가.
+ - OnRButtonDown 무분별한 Clear로 인하여 Dot가 사라지던 문제 해결
+ - OnBnClickedRandom() 변수 Clear
+	Random 버튼 이후에도 Dot가 계속 생성이 되는 현상 예외처리
+ - OnLBnDown 변수 Clear
+	원 생성 이후에도 Dot가 계속 그려지는 현상 예외처리
+ - 원이 IDC_STATIC 영역을 벗어나서 그려지는 현상 예외처리	
+ - Dot로 원을 생성할때 여전히 일직선 상에 Dot가 놓여있을 경우
+	원이 생성이 되지 않는 현상이 발생
+	해당부분 2개의 외접 중심점으로 원을 그릴수 있도록 예외처리
+
+ 25. 02. 03
+ - OnLButtonUp Drag 원이 생성될 때 기존 Dot 원 및 Dot 삭제
+	화면 갱신, 예외처리 추가
+ - Dot로 원이 중복으로 그려지는 현상 
+
+
+
+
+
+
+
